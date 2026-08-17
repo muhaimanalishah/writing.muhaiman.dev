@@ -2,8 +2,14 @@
 
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  className?: string
+  iconClassName?: string
+}
+
+export function ThemeToggle({ className, iconClassName }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme()
 
   const toggleTheme = () => {
@@ -15,7 +21,10 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon-sm"
       onClick={toggleTheme}
-      className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+      className={cn(
+        "text-muted-foreground hover:text-foreground transition-colors cursor-pointer",
+        className
+      )}
       aria-label="Toggle theme"
       title="Toggle theme (Press 'd')"
     >
@@ -29,7 +38,7 @@ export function ThemeToggle() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="size-4.5 transition-transform duration-300 hover:rotate-12"
+        className={cn("size-4.5 transition-transform duration-300 hover:rotate-12", iconClassName)}
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />

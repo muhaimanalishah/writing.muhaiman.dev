@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 import { cn } from "@/lib/utils"
 
 const inter = Inter({
@@ -58,13 +56,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, inter.variable, "font-sans")}
     >
-      <body className="flex min-h-screen flex-col bg-background text-foreground selection:bg-foreground selection:text-background">
+      <body className="min-h-screen bg-background text-foreground selection:bg-foreground selection:text-background">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
+          {children}
         </ThemeProvider>
       </body>
     </html>
