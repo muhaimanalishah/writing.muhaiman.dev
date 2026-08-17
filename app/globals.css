@@ -1,152 +1,195 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ---------------------------------------------------------------
+   Marginalia — the visual system.
+
+   One material metaphor sitewide: fountain-pen ink on paper.
+   A narrow margin column (mono, metadata) is divided from the
+   text column (serif, the writing) by a single vertical rule.
+
+   Light = day paper: warm white, blue-black ink.
+   Dark  = night ink: deep blue-slate paper, warm lamplit text.
+   --------------------------------------------------------------- */
+
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+    /* Newsreader carries everything readable; Plex Mono carries
+       everything mechanical: dates, labels, nav, code. */
+    --font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+    --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+
+    --color-background: var(--paper);
+    --color-foreground: var(--ink);
+    --color-muted-foreground: var(--faded);
+    --color-accent: var(--wet-ink);
+    --color-rule: var(--rule);
+    --color-wash: var(--wash);
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0 0 0);
-    --primary: oklch(0 0 0);
-    --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.96 0 0);
-    --secondary-foreground: oklch(0 0 0);
-    --muted: oklch(0.96 0 0);
-    --muted-foreground: oklch(0.42 0 0);
-    --accent: oklch(0.96 0 0);
-    --accent-foreground: oklch(0 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0 0 0 / 12%);
-    --input: oklch(0 0 0 / 12%);
-    --ring: oklch(0.5 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(1 0 0);
-    --sidebar-foreground: oklch(0 0 0);
-    --sidebar-primary: oklch(0 0 0);
-    --sidebar-primary-foreground: oklch(1 0 0);
-    --sidebar-accent: oklch(0.96 0 0);
-    --sidebar-accent-foreground: oklch(0 0 0);
-    --sidebar-border: oklch(0 0 0 / 12%);
-    --sidebar-ring: oklch(0.5 0 0);
+    /* Day paper */
+    --paper: oklch(0.978 0.005 95);
+    --ink: oklch(0.26 0.02 264);
+    --faded: oklch(0.51 0.018 262);
+    --wet-ink: oklch(0.45 0.13 262);
+    --rule: oklch(0.26 0.02 264 / 16%);
+    --wash: oklch(0.945 0.006 95);
+
+    /* The margin column and its gutter — one number, every page */
+    --margin-w: 7.5rem;
+    --gutter-w: 2.5rem;
 }
 
 .dark {
-    --background: oklch(0 0 0);
-    --foreground: oklch(1 0 0);
-    --card: oklch(0 0 0);
-    --card-foreground: oklch(1 0 0);
-    --popover: oklch(0 0 0);
-    --popover-foreground: oklch(1 0 0);
-    --primary: oklch(1 0 0);
-    --primary-foreground: oklch(0 0 0);
-    --secondary: oklch(0.18 0 0);
-    --secondary-foreground: oklch(1 0 0);
-    --muted: oklch(0.18 0 0);
-    --muted-foreground: oklch(0.65 0 0);
-    --accent: oklch(0.18 0 0);
-    --accent-foreground: oklch(1 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 15%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.6 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0 0 0);
-    --sidebar-foreground: oklch(1 0 0);
-    --sidebar-primary: oklch(1 0 0);
-    --sidebar-primary-foreground: oklch(0 0 0);
-    --sidebar-accent: oklch(0.18 0 0);
-    --sidebar-accent-foreground: oklch(1 0 0);
-    --sidebar-border: oklch(1 0 0 / 15%);
-    --sidebar-ring: oklch(0.6 0 0);
+    /* Night ink */
+    --paper: oklch(0.213 0.018 264);
+    --ink: oklch(0.905 0.012 85);
+    --faded: oklch(0.655 0.015 264);
+    --wet-ink: oklch(0.74 0.09 262);
+    --rule: oklch(0.905 0.012 85 / 15%);
+    --wash: oklch(0.258 0.018 264);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
-    @apply bg-background text-foreground min-h-screen font-sans antialiased;
+    @apply bg-background text-foreground min-h-screen font-serif antialiased;
     text-rendering: optimizeLegibility;
   }
-  html {
-    @apply font-sans;
-  }
+
   ::selection {
-    background-color: var(--foreground);
-    color: var(--background);
+    background-color: var(--wet-ink);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--wet-ink);
+    outline-offset: 3px;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-ligatures: none;
   }
 }
 
-/* Syntax Highlighting rehype-pretty-code support */
-pre[data-theme*=" "],
-pre[data-theme*=" "] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
+/* ---------------------------------------------------------------
+   The leaf: every page's shared frame.
+
+   .leaf   — a page section crossed by the continuous vertical rule
+   .row    — margin column + text column
+   .marginalia — mono metadata, right-aligned against the rule
+   --------------------------------------------------------------- */
+
+.leaf {
+  position: relative;
 }
 
-.dark pre[data-theme*=" "],
-.dark pre[data-theme*=" "] span {
+@media (min-width: 768px) {
+  .leaf::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--margin-w) + var(--gutter-w) / 2);
+    width: 1px;
+    background-color: var(--rule);
+    transform-origin: top;
+    animation: rule-draw 0.8s cubic-bezier(0.25, 0.6, 0.25, 1) both;
+  }
+}
+
+@keyframes rule-draw {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: var(--margin-w) 1fr;
+    column-gap: var(--gutter-w);
+  }
+}
+
+.marginalia {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--faded);
+}
+
+@media (min-width: 768px) {
+  .marginalia {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.375rem;
+    text-align: right;
+  }
+}
+
+/* Entries drift up as the index settles onto the page. */
+@keyframes entry-rise {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+.rise {
+  animation: entry-rise 0.55s cubic-bezier(0.25, 0.6, 0.25, 1) backwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf::before,
+  .rise {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Prose details that live below the class level
+   --------------------------------------------------------------- */
+
+/* Section break: a dinkus, the manuscript convention. */
+hr.dinkus {
+  border: 0;
+  margin-block: 3rem;
+  text-align: center;
+}
+
+hr.dinkus::before {
+  content: "*  *  *";
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.5em;
+  color: var(--faded);
+  white-space: pre;
+}
+
+/* Syntax highlighting (rehype-pretty-code, dual shiki themes). */
+code[data-theme],
+code[data-theme] span {
+  color: var(--shiki-light);
+}
+
+.dark code[data-theme],
+.dark code[data-theme] span {
   color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
 }
 
 pre [data-line] {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-inline: 0.25rem;
+}
+
+/* Inline code inside headings shouldn't shrink out of proportion. */
+:where(h1, h2, h3, h4) code {
+  font-size: 0.9em;
+  font-weight: inherit;
 }

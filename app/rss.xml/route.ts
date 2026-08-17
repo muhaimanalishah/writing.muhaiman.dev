@@ -31,9 +31,9 @@ export async function GET() {
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Writings</title>
+    <title>Muhaiman</title>
     <link>${baseUrl}</link>
-    <description>A minimal, content-focused personal writing website.</description>
+    <description>Personal writing by Muhaiman — essays and notes, on no particular subject.</description>
     <language>en-US</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { getAllPosts } from "@/lib/posts"
+import { getAllPosts, getAllTags } from "@/lib/posts"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://writing.muhaiman.dev"
@@ -12,18 +12,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  const topicUrls: MetadataRoute.Sitemap = getAllTags().map((tag) => ({
+    url: `${baseUrl}/topics/${tag}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.5,
+  }))
+
   const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/posts`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
@@ -33,5 +34,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  return [...routes, ...postUrls]
+  return [...routes, ...postUrls, ...topicUrls]
 }

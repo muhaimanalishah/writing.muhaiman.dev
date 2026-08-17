@@ -8,6 +8,7 @@ export interface PostMetadata {
   description: string
   date: string
   readingTime: string
+  tags: string[]
 }
 
 export interface Post extends PostMetadata {
@@ -22,7 +23,12 @@ function estimateReadingTime(text: string): string {
   const cleanText = text.replace(/<[^>]*>/g, "").replace(/[#*`~_\[\]()]/g, "")
   const wordCount = cleanText.trim().split(/\s+/).filter(Boolean).length
   const minutes = Math.max(1, Math.ceil(wordCount / wordsPerMinute))
-  return `${minutes} min read`
+  return `${minutes} min`
+}
+
+function parseTags(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return []
+  return raw.map((tag) => String(tag).trim().toLowerCase()).filter(Boolean)
 }
 
 export function getAllPosts(): PostMetadata[] {
@@ -45,6 +51,7 @@ export function getAllPosts(): PostMetadata[] {
         description: data.description || "",
         date: data.date ? String(data.date) : new Date().toISOString().slice(0, 10),
         readingTime: estimateReadingTime(content),
+        tags: parseTags(data.tags),
       }
     })
 
@@ -66,12 +73,25 @@ export function getPostBySlug(slug: string): Post | null {
         description: data.description || "",
         date: data.date ? String(data.date) : new Date().toISOString().slice(0, 10),
         readingTime: estimateReadingTime(content),
+        tags: parseTags(data.tags),
         content,
       }
     }
   }
 
   return null
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set<string>()
+  for (const post of getAllPosts()) {
+    for (const tag of post.tags) tags.add(tag)
+  }
+  return [...tags].sort()
+}
+
+export function getPostsByTag(tag: string): PostMetadata[] {
+  return getAllPosts().filter((post) => post.tags.includes(tag))
 }
 
 export function getAboutMetadata(): { title: string; description: string } {

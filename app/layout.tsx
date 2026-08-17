@@ -1,27 +1,31 @@
 import type { Metadata } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import { IBM_Plex_Mono, Newsreader } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
-const inter = Inter({
+/* The writing — display, body, and the italics that carry standfirsts */
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-sans",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 })
 
-const fontMono = Geist_Mono({
+/* The machinery — marginalia, nav, dates, code */
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 })
 
 export const metadata: Metadata = {
   title: {
-    default: "Writings",
-    template: "%s | Writings",
+    default: "Muhaiman",
+    template: "%s · Muhaiman",
   },
-  description: "A minimal, content-focused personal writing website exploring design, code, and philosophy.",
+  description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://writing.muhaiman.dev"),
   authors: [{ name: "Muhaiman" }],
   creator: "Muhaiman",
@@ -29,14 +33,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Writings",
-    title: "Writings",
-    description: "A minimal, content-focused personal writing website exploring design, code, and philosophy.",
+    siteName: "Muhaiman",
+    title: "Muhaiman",
+    description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Writings",
-    description: "A minimal, content-focused personal writing website exploring design, code, and philosophy.",
+    title: "Muhaiman",
+    description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
   },
   alternates: {
     types: {
@@ -54,12 +58,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, inter.variable, "font-sans")}
+      className={cn("antialiased", newsreader.variable, plexMono.variable)}
     >
-      <body className="min-h-screen bg-background text-foreground selection:bg-foreground selection:text-background">
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+      <body className="min-h-screen bg-background font-serif text-foreground">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

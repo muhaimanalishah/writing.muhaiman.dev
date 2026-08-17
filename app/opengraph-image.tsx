@@ -1,11 +1,19 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Writings"
+export const alt = "Muhaiman — personal writing"
 export const size = {
   width: 1200,
   height: 630,
 }
 export const contentType = "image/png"
+
+/* Satori can't read CSS custom properties, so the night-ink palette
+   is mirrored here as literals. Keep in sync with globals.css. */
+const PAPER = "#1a1e2c"
+const INK = "#e7e2d7"
+const FADED = "rgba(231, 226, 215, 0.6)"
+const ACCENT = "#94a7e0"
+const RULE = "rgba(231, 226, 215, 0.16)"
 
 export default async function Image() {
   return new ImageResponse(
@@ -16,61 +24,45 @@ export default async function Image() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
           justifyContent: "space-between",
-          backgroundColor: "#0f1115",
-          color: "#f3f4f6",
+          backgroundColor: PAPER,
+          color: INK,
           padding: "80px",
-          fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            fontSize: "22px",
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-            color: "#9ca3af",
-            fontWeight: 600,
-          }}
-        >
-          Writings
+        <div style={{ fontSize: "22px", color: FADED }}>writing.muhaiman.dev</div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+          <div style={{ fontSize: "34px", letterSpacing: "18px", color: ACCENT }}>* * *</div>
+          <div
+            style={{
+              fontSize: "108px",
+              fontWeight: 600,
+              lineHeight: 1,
+              letterSpacing: "-0.03em",
+              color: INK,
+            }}
+          >
+            Muhaiman
+          </div>
+          <div style={{ fontSize: "28px", color: FADED, lineHeight: 1.45, maxWidth: "760px" }}>
+            Essays and notes, on no particular subject.
+          </div>
         </div>
+
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: "20px",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: `1px solid ${RULE}`,
+            paddingTop: "28px",
+            fontSize: "20px",
+            color: FADED,
           }}
         >
-          <div
-            style={{
-              fontSize: "60px",
-              fontWeight: 700,
-              lineHeight: 1.15,
-              letterSpacing: "-0.03em",
-              color: "#ffffff",
-            }}
-          >
-            A Minimal Writing Space
-          </div>
-          <div
-            style={{
-              fontSize: "26px",
-              color: "#9ca3af",
-              lineHeight: 1.4,
-              maxWidth: "920px",
-            }}
-          >
-            Reflections on software engineering, interface design, and digital craftsmanship.
-          </div>
-        </div>
-        <div
-          style={{
-            fontSize: "18px",
-            color: "#6b7280",
-          }}
-        >
-          writing.muhaiman.dev
+          <span>Personal writing</span>
+          <span>rss available</span>
         </div>
       </div>
     ),
