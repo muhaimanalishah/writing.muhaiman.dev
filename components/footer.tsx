@@ -8,16 +8,16 @@ export function Footer() {
   const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL?.trim()
 
   const socialLinks = [
-    { label: "github", href: githubUrl },
-    { label: "x", href: xUrl },
-    { label: "linkedin", href: linkedinUrl },
+    { label: "GitHub", href: githubUrl },
+    { label: "X", href: xUrl },
+    { label: "LinkedIn", href: linkedinUrl },
   ].filter((item): item is { label: string; href: string } => Boolean(item.href))
 
   return (
-    <footer className="flex items-baseline justify-between gap-6 border-t border-rule py-8 font-mono text-xs text-muted-foreground">
+    <footer className="flex items-center justify-between gap-6 border-t border-faint py-8 text-sm text-muted-foreground">
       <p>© {currentYear} Muhaiman</p>
 
-      <div className="flex items-baseline gap-5">
+      <div className="flex items-center gap-5">
         {socialLinks.map((social) => (
           <a
             key={social.label}
@@ -30,7 +30,7 @@ export function Footer() {
           </a>
         ))}
         <Link href="/rss.xml" className="transition-colors hover:text-foreground">
-          rss
+          RSS
         </Link>
       </div>
     </footer>

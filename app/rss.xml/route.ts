@@ -6,7 +6,7 @@ export async function GET() {
 
   const itemsXml = posts
     .map((post) => {
-      const postUrl = `${baseUrl}/posts/${post.slug}`
+      const postUrl = `${baseUrl}/writing/${post.slug}`
       const pubDate = new Date(post.date).toUTCString()
       // Escape XML special characters
       const escapeXml = (unsafe: string) =>
@@ -33,7 +33,7 @@ export async function GET() {
   <channel>
     <title>Muhaiman</title>
     <link>${baseUrl}</link>
-    <description>Personal writing by Muhaiman — essays and notes, on no particular subject.</description>
+    <description>Muhaiman's personal site — writing about software, learning, and life.</description>
     <language>en-US</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>

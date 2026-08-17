@@ -1,18 +1,17 @@
 import type { Metadata } from "next"
-import { IBM_Plex_Mono, Newsreader } from "next/font/google"
+import { Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
-/* The writing — display, body, and the italics that carry standfirsts */
-const newsreader = Newsreader({
+/* One friendly humanist sans for everything readable */
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-sans",
   display: "swap",
 })
 
-/* The machinery — marginalia, nav, dates, code */
+/* Mono appears only inside code */
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     default: "Muhaiman",
     template: "%s · Muhaiman",
   },
-  description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
+  description: "Muhaiman's personal site — writing about software, learning, and life.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://writing.muhaiman.dev"),
   authors: [{ name: "Muhaiman" }],
   creator: "Muhaiman",
@@ -35,12 +34,12 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Muhaiman",
     title: "Muhaiman",
-    description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
+    description: "Muhaiman's personal site — writing about software, learning, and life.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Muhaiman",
-    description: "Personal writing by Muhaiman — essays and notes, on no particular subject.",
+    description: "Muhaiman's personal site — writing about software, learning, and life.",
   },
   alternates: {
     types: {
@@ -58,9 +57,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", newsreader.variable, plexMono.variable)}
+      className={cn("antialiased", hanken.variable, plexMono.variable)}
     >
-      <body className="min-h-screen bg-background font-serif text-foreground">
+      <body className="min-h-screen bg-background font-sans text-foreground">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

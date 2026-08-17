@@ -16,20 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function AboutPage() {
   return (
-    <div className="pb-16">
-      <header className="row pt-12 sm:pt-16">
-        <p className="marginalia">about</p>
-        <h1 className="font-serif text-3xl font-medium tracking-tight text-foreground">
-          Muhaiman
-        </h1>
+    <div className="pb-20">
+      <header className="pt-14 sm:pt-20">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">About</h1>
       </header>
 
-      <div className="row mt-8">
-        <div aria-hidden className="hidden md:block" />
-        <article className="max-w-2xl">
-          <AboutContent />
-        </article>
-      </div>
+      <article className="mt-8">
+        <AboutContent />
+      </article>
     </div>
   )
 }

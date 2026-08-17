@@ -1,37 +1,45 @@
 import Link from "next/link"
-import { getAllPosts, getAllTags } from "@/lib/posts"
-import { WritingIndex } from "@/components/writing-index"
+import { getAllPosts } from "@/lib/posts"
+import { PostList } from "@/components/post-list"
 
 export default function HomePage() {
-  const posts = getAllPosts()
-  const tags = getAllTags()
+  const recent = getAllPosts().slice(0, 5)
 
   return (
-    <div className="pb-16">
-      <div className="row pt-10 sm:pt-14">
-        <div aria-hidden className="hidden md:block" />
-        <p className="max-w-[44ch] font-serif text-lg italic leading-relaxed text-muted-foreground">
-          Essays and notes, on no particular subject.
+    <div className="pb-20">
+      <section className="rise pt-14 sm:pt-20">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          Hi, I&apos;m Muhaiman<span className="text-accent">.</span>
+        </h1>
+        <p className="mt-4 max-w-[46ch] text-lg leading-relaxed text-muted-foreground">
+          I build software and write here about the work, the learning, and life around it.
         </p>
-      </div>
+      </section>
 
-      <WritingIndex posts={posts} />
+      <section className="mt-16">
+        <h2
+          className="rise text-sm font-medium text-muted-foreground"
+          style={{ ["--rise-delay" as string]: "100ms" }}
+        >
+          Recent writing
+        </h2>
 
-      {tags.length > 0 && (
-        <div className="row pt-14">
-          <p className="marginalia">topics</p>
-          <p className="font-mono text-xs leading-loose text-muted-foreground">
-            {tags.map((tag, i) => (
-              <span key={tag}>
-                {i > 0 && <span aria-hidden> · </span>}
-                <Link href={`/topics/${tag}`} className="transition-colors hover:text-accent">
-                  {tag}
-                </Link>
-              </span>
-            ))}
-          </p>
+        <div className="mt-3">
+          <PostList posts={recent} stagger={150} />
         </div>
-      )}
+
+        <p className="rise mt-6" style={{ ["--rise-delay" as string]: "400ms" }}>
+          <Link
+            href="/writing"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-accent"
+          >
+            All writing
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        </p>
+      </section>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { getAllTags, getPostsByTag } from "@/lib/posts"
-import { WritingIndex } from "@/components/writing-index"
+import { PostList } from "@/components/post-list"
 
 interface TopicPageProps {
   params: Promise<{ tag: string }>
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: TopicPageProps): Promise<Meta
   const { tag } = await params
   return {
     title: tag,
-    description: `Writing filed under ${tag}.`,
+    description: `Writing about ${tag}.`,
   }
 }
 
@@ -31,21 +31,24 @@ export default async function TopicPage({ params }: TopicPageProps) {
   }
 
   return (
-    <div className="pb-16">
-      <header className="row pt-10 sm:pt-14">
-        <p className="marginalia">topic</p>
-        <div>
-          <h1 className="font-serif text-3xl font-medium tracking-tight text-foreground">{tag}</h1>
-          <p className="mt-2 font-mono text-xs text-muted-foreground">
-            {posts.length} {posts.length === 1 ? "piece" : "pieces"} ·{" "}
-            <Link href="/" className="transition-colors hover:text-accent">
-              full index
-            </Link>
-          </p>
-        </div>
+    <div className="pb-20">
+      <header className="pt-14 sm:pt-20">
+        <p className="text-sm font-medium text-muted-foreground">Topic</p>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tight text-foreground">{tag}</h1>
       </header>
 
-      <WritingIndex posts={posts} />
+      <div className="mt-8">
+        <PostList posts={posts} />
+      </div>
+
+      <p className="mt-8">
+        <Link
+          href="/writing"
+          className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+        >
+          ← All writing
+        </Link>
+      </p>
     </div>
   )
 }

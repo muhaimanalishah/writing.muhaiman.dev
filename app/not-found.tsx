@@ -6,28 +6,24 @@ import { Footer } from "@/components/footer"
    its own copy of the frame. */
 export default function NotFound() {
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-5 sm:px-8">
+    <div className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-6">
       <Navbar />
-      <main className="leaf flex-1 border-t border-rule">
-        <div className="row pt-16 pb-24 sm:pt-24">
-          <p className="marginalia">404</p>
-          <div className="max-w-2xl">
-            <h1 className="font-serif text-3xl font-medium tracking-tight text-foreground">
-              There&apos;s no page here.
-            </h1>
-            <p className="mt-4 font-serif text-lg italic leading-relaxed text-muted-foreground">
-              The link may be stale, or the piece may have moved.
-            </p>
-            <p className="mt-8">
-              <Link
-                href="/"
-                className="font-mono text-xs text-muted-foreground transition-colors hover:text-accent"
-              >
-                back to the index
-              </Link>
-            </p>
-          </div>
-        </div>
+      <main className="flex-1 pt-14 pb-20 sm:pt-20">
+        <p className="text-sm font-medium text-muted-foreground">404</p>
+        <h1 className="mt-1 text-3xl font-semibold tracking-tight text-foreground">
+          This page doesn&apos;t exist.
+        </h1>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+          The link may be old, or the post may have moved.
+        </p>
+        <p className="mt-8">
+          <Link
+            href="/"
+            className="text-sm font-medium text-accent transition-opacity hover:opacity-80"
+          >
+            ← Back home
+          </Link>
+        </p>
       </main>
       <Footer />
     </div>

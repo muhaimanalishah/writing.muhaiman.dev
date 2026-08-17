@@ -3,68 +3,61 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------
-   Marginalia — the visual system.
+   The visual system.
 
-   One material metaphor sitewide: fountain-pen ink on paper.
-   A narrow margin column (mono, metadata) is divided from the
-   text column (serif, the writing) by a single vertical rule.
+   Clean and contemporary, warm rather than clinical: stone
+   neutrals, one dusty-blue accent, a single humanist sans
+   (Hanken Grotesk) doing all the talking. Mono exists only
+   inside actual code.
 
-   Light = day paper: warm white, blue-black ink.
-   Dark  = night ink: deep blue-slate paper, warm lamplit text.
+   Light = soft warm white. Dark = warm charcoal, never black.
    --------------------------------------------------------------- */
 
 @theme inline {
-    /* Newsreader carries everything readable; Plex Mono carries
-       everything mechanical: dates, labels, nav, code. */
-    --font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+    --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
 
-    --color-background: var(--paper);
-    --color-foreground: var(--ink);
-    --color-muted-foreground: var(--faded);
-    --color-accent: var(--wet-ink);
-    --color-rule: var(--rule);
+    --color-background: var(--bg);
+    --color-foreground: var(--fg);
+    --color-muted-foreground: var(--muted);
+    --color-accent: var(--accent);
+    --color-faint: var(--faint);
     --color-wash: var(--wash);
 }
 
 :root {
-    /* Day paper */
-    --paper: oklch(0.978 0.005 95);
-    --ink: oklch(0.26 0.02 264);
-    --faded: oklch(0.51 0.018 262);
-    --wet-ink: oklch(0.45 0.13 262);
-    --rule: oklch(0.26 0.02 264 / 16%);
-    --wash: oklch(0.945 0.006 95);
-
-    /* The margin column and its gutter — one number, every page */
-    --margin-w: 7.5rem;
-    --gutter-w: 2.5rem;
+    --bg: oklch(0.987 0.002 95);
+    --fg: oklch(0.245 0.008 85);
+    --muted: oklch(0.51 0.01 80);
+    --accent: oklch(0.53 0.075 250);
+    --faint: oklch(0.925 0.004 80);
+    --wash: oklch(0.958 0.003 80);
 }
 
 .dark {
-    /* Night ink */
-    --paper: oklch(0.213 0.018 264);
-    --ink: oklch(0.905 0.012 85);
-    --faded: oklch(0.655 0.015 264);
-    --wet-ink: oklch(0.74 0.09 262);
-    --rule: oklch(0.905 0.012 85 / 15%);
-    --wash: oklch(0.258 0.018 264);
+    --bg: oklch(0.2 0.005 80);
+    --fg: oklch(0.925 0.004 85);
+    --muted: oklch(0.66 0.006 80);
+    --accent: oklch(0.75 0.065 250);
+    --faint: oklch(1 0 0 / 9%);
+    --wash: oklch(0.25 0.005 80);
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground min-h-screen font-serif antialiased;
+    @apply bg-background text-foreground min-h-screen font-sans antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: var(--wet-ink);
-    color: var(--paper);
+    background-color: var(--accent);
+    color: var(--bg);
   }
 
   :focus-visible {
-    outline: 2px solid var(--wet-ink);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
+    border-radius: 2px;
   }
 
   code, pre, kbd, samp {
@@ -73,104 +66,21 @@
   }
 }
 
-/* ---------------------------------------------------------------
-   The leaf: every page's shared frame.
-
-   .leaf   — a page section crossed by the continuous vertical rule
-   .row    — margin column + text column
-   .marginalia — mono metadata, right-aligned against the rule
-   --------------------------------------------------------------- */
-
-.leaf {
-  position: relative;
-}
-
-@media (min-width: 768px) {
-  .leaf::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(var(--margin-w) + var(--gutter-w) / 2);
-    width: 1px;
-    background-color: var(--rule);
-    transform-origin: top;
-    animation: rule-draw 0.8s cubic-bezier(0.25, 0.6, 0.25, 1) both;
-  }
-}
-
-@keyframes rule-draw {
-  from { transform: scaleY(0); }
-  to   { transform: scaleY(1); }
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-  .row {
-    grid-template-columns: var(--margin-w) 1fr;
-    column-gap: var(--gutter-w);
-  }
-}
-
-.marginalia {
-  display: flex;
-  align-items: baseline;
-  gap: 0.875rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  color: var(--faded);
-}
-
-@media (min-width: 768px) {
-  .marginalia {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.375rem;
-    text-align: right;
-  }
-}
-
-/* Entries drift up as the index settles onto the page. */
-@keyframes entry-rise {
+/* Content drifts up gently as a page settles in. */
+@keyframes rise {
   from { opacity: 0; transform: translateY(0.5rem); }
   to   { opacity: 1; transform: none; }
 }
 
 .rise {
-  animation: entry-rise 0.55s cubic-bezier(0.25, 0.6, 0.25, 1) backwards;
+  animation: rise 0.5s cubic-bezier(0.25, 0.6, 0.25, 1) backwards;
   animation-delay: var(--rise-delay, 0ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .leaf::before,
   .rise {
     animation: none;
   }
-}
-
-/* ---------------------------------------------------------------
-   Prose details that live below the class level
-   --------------------------------------------------------------- */
-
-/* Section break: a dinkus, the manuscript convention. */
-hr.dinkus {
-  border: 0;
-  margin-block: 3rem;
-  text-align: center;
-}
-
-hr.dinkus::before {
-  content: "*  *  *";
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.125rem;
-  letter-spacing: 0.5em;
-  color: var(--faded);
-  white-space: pre;
 }
 
 /* Syntax highlighting (rehype-pretty-code, dual shiki themes). */
