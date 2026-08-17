@@ -8,8 +8,6 @@ export const size = {
 }
 export const contentType = "image/png"
 
-/* Satori can't read CSS custom properties, so the palette is
-   mirrored here as literals. Keep in sync with globals.css. */
 const BG = "#faf9f7"
 const FG = "#2b2a26"
 const MUTED = "#807c74"

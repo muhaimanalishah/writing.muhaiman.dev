@@ -49,7 +49,7 @@ export default async function Image() {
             </span>
           </div>
           <div style={{ fontSize: "30px", color: MUTED, lineHeight: 1.45, maxWidth: "820px" }}>
-            Writing about software, learning, and life.
+            Writing about whatever I find worth writing about.
           </div>
         </div>
 
