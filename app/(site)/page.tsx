@@ -12,7 +12,7 @@ export default function HomePage() {
           Hi, I&apos;m Muhaiman<span className="text-accent">.</span>
         </h1>
         <p className="mt-4 max-w-[46ch] text-lg leading-relaxed text-muted-foreground">
-          I build software and write here about the work, the learning, and life around it.
+          I build software and write about whatever I find worth writing about.
         </p>
       </section>
 
