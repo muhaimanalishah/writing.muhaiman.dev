@@ -1,0 +1,166 @@
+---
+title: "Markdown & MDX Formatting Showcase"
+description: "A comprehensive demonstration of standard Markdown and MDX typography elements, from headings and tables to code syntax and blockquotes."
+date: "2026-08-17"
+---
+
+# Typography and Hierarchy
+
+Writing on the web should be an inviting, effortless experience. When type is set with intention, ideas flow unobstructed from the writer's mind to the reader's contemplation.
+
+This post serves as a living specimen of every standard Markdown element supported on this website.
+
+## Headings and Structure
+
+Hierarchy gives long-form essays their cadence. Good hierarchy establishes a clear visual rhythm that guides the reader naturally through the text.
+
+### Section Sub-heading (H3)
+
+Sub-headings allow you to break down complex ideas into manageable sections without overwhelming the flow of prose.
+
+#### Minor Heading (H4)
+
+For nuanced subsections or technical breakdowns, fourth-level headings provide subtle emphasis.
+
+##### Fifth-Level Heading (H5)
+
+A quiet delimiter for deeply nested notes or specialized specifications.
+
+###### Sixth-Level Heading (H6)
+
+The subtlest structural marker, often used for meta-commentary or technical headers.
+
+---
+
+## Paragraphs and Inline Text Styling
+
+Words carry weight not only through their meaning, but through their visual tone. You can emphasize thoughts with **strong bold text** for key assertions, or use *gentle italics* for nuanced reflections. You can also combine them for ***bold and italicized emphasis*** when a point demands unmistakable focus.
+
+When revising thoughts or showing evolution of perspective, you can use ~~strikethrough text~~ to indicate crossed-out thoughts.
+
+Hyperlinks are styled for clear legibility: here is an [internal link to the About page](/about), and here is an [external link to Next.js documentation](https://nextjs.org) with accessible external indicators.
+
+---
+
+## Quotes and Reflections
+
+Blockquotes provide visual breathing room for citations, epigraphs, and memorable reflections.
+
+> "Simplicity is about subtracting the obvious and adding the meaningful."
+>
+> — John Maeda, *The Laws of Simplicity*
+
+Blockquotes can also be nested to capture conversational dialogue or progressive layers of commentary:
+
+> First layer of wisdom: Always write for clarity before cleverness.
+>
+> > Nested reflection: When in doubt, read the sentence aloud. If your breath hitches, the reader's comprehension will too.
+
+---
+
+## Lists and Enumerations
+
+Organizing thoughts into structured sequences is essential for tutorials, principles, and structured arguments.
+
+### Unordered Lists
+
+* Typography is the foundation of digital clarity.
+* Whitespace is not empty space; it is deliberate structure.
+* Fast loading times respect the reader's attention and time.
+* Contrast must be comfortable across both bright morning light and late-night reading.
+
+### Ordered Lists
+
+1. Establish your primary thesis in the opening paragraph.
+2. Unpack supporting arguments with concise, concrete examples.
+3. Address counterarguments with intellectual honesty.
+4. Conclude with actionable reflections or open questions.
+
+### Nested Lists
+
+* **Design Principles**
+  * Subtraction over addition
+    * Remove non-essential decorative borders
+    * Eliminate gratuitous animations
+  * Ergonomic reading widths
+    * Optimal line length: 60 to 75 characters
+    * Balanced vertical line-height
+* **Technical Principles**
+  * Zero runtime JavaScript for static reading
+  * Native CSS variable token integration
+
+---
+
+## Code and Syntax Highlighting
+
+Inline code snippets like `const reader = new Reader()` allow you to reference functions, variables, or terminal commands like `npm run dev` within normal paragraph text.
+
+For multi-line code examples, syntax highlighting with dark and light theme adaptability ensures code remains crisp and legible:
+
+```typescript
+interface Essay {
+  title: string
+  description: string
+  date: string
+  wordCount: number
+}
+
+export function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200
+  const words = content.trim().split(/\s+/).length
+  return Math.ceil(words / wordsPerMinute)
+}
+```
+
+Here is a shell session example:
+
+```bash
+# Clone repository and launch local development
+git clone https://github.com/muhaiman/writing.git
+cd writing
+npm install
+npm run dev
+```
+
+And a snippet of modern CSS styling:
+
+```css
+:root {
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --line-height-prose: 1.8;
+}
+
+article {
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: var(--line-height-prose);
+}
+```
+
+---
+
+## Tabular Data
+
+Tables are formatted with clean boundaries, subtle row highlights, and automatic horizontal scrolling on mobile screens to preserve layout integrity:
+
+| Format | Purpose | Ideal Line Length | Contrast Ratio |
+| :--- | :--- | :--- | :--- |
+| Long-form Essay | Deep dives & philosophical musings | 65–75 chars | 7:1 (AAA) |
+| Technical Note | Quick reference & reproducible snippets | 70–85 chars | 4.5:1 (AA) |
+| Short Reflection | Daily thoughts & serendipitous ideas | 50–65 chars | 7:1 (AAA) |
+| Changelog | Project evolution & milestones | Full width | 4.5:1 (AA) |
+
+---
+
+## Visual Media
+
+Imagery should complement rather than distract from the written word.
+
+![Minimalist workspace setup with clean typography on a laptop screen](https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80)
+
+---
+
+## Conclusion
+
+When layout, typography, and content harmonize, reading becomes a pure pleasure. Every element showcased here operates on tokenized CSS variables, adapting effortlessly whether you prefer light or dark mode.
