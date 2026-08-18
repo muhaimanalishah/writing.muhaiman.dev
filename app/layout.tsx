@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -60,7 +62,11 @@ export default function RootLayout({
       className={cn("antialiased", hanken.variable, plexMono.variable)}
     >
       <body className="min-h-screen bg-background font-sans text-foreground">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   )
